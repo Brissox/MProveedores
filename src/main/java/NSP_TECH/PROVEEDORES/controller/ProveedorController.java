@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,16 +56,6 @@ public class ProveedorController {
     }
     }
     
-    @DeleteMapping("/{ID_PROVEEDOR}")
-        public ResponseEntity<String> EliminarProveedor(@PathVariable Long ID_PROVEEDOR){
-            try {
-                proveedor pBuscado = pService.BuscarUnProveedor(ID_PROVEEDOR);
-                pService.EliminarProveedor(ID_PROVEEDOR);
-                return ResponseEntity.status(HttpStatus.OK).body("Se elimina proveedor");
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Proveedor no esta registrado");
-            }
-        }
     @PutMapping("/{ID_PROVEEDOR}") //SOLO PERMITE ACTUALIZAR ESCRIBIENDO TODOS LOS DATOS
         
     public ResponseEntity<?> ActualizarProveedor(@PathVariable Long ID_PROVEEDOR, @RequestBody proveedor pActualizar){
@@ -84,6 +73,19 @@ public class ProveedorController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no esta registrado");
         }
     }
+
+    /*
+        @DeleteMapping("/{ID_PROVEEDOR}")
+        public ResponseEntity<String> EliminarProveedor(@PathVariable Long ID_PROVEEDOR){
+            try {
+                proveedor pBuscado = pService.BuscarUnProveedor(ID_PROVEEDOR);
+                pService.EliminarProveedor(ID_PROVEEDOR);
+                return ResponseEntity.status(HttpStatus.OK).body("Se elimina proveedor");
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Proveedor no esta registrado");
+            }
+        }
+     */
     
 
 
