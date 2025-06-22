@@ -16,9 +16,9 @@ public class proveedorModelAssembler implements RepresentationModelAssembler<pro
     public EntityModel<proveedor> toModel(proveedor p){
         return EntityModel.of(
             p,
-            linkTo(methodOn(ProveedorController.class).BuscarProveedor(p.getID_PROVEEDOR())).withRel("LINKS"),
+            linkTo(methodOn(ProveedorController.class).BuscarProveedor(p.getId_proveedor())).withRel("LINKS"),
             linkTo(methodOn(ProveedorController.class).ListarProveedores()).withRel("todas-los-proveedores"),
-            linkTo(methodOn(ProveedorController.class).ActualizarProveedor(p.getID_PROVEEDOR(), p)).withRel("actualiza-un-proveedor")
+            linkTo(methodOn(ProveedorController.class).ActualizarProveedor(p.getId_proveedor(), p)).withRel("actualiza-un-proveedor")
         );
     }
 }

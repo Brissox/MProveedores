@@ -24,25 +24,25 @@ public class proveedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "")
     @Column(name="ID_PROVEEDOR")
-    private Long ID_PROVEEDOR;
+    private Long id_proveedor;
 
     @Column(name="NOMBRE", nullable=false, length=300)
-    @Schema(description = "")
-    private String NOMBRE;
+    @Schema(description = "aa")
+    private String nombre;
 
     @Column(name="CONTACTO", nullable=false, length=50)
     @Schema(description = "")
-    private String CONTACTO;
+    private String contacto;
 
     @Column(name="TELEFONO", nullable=true, precision=9)
     @Schema(description = "")
-    private int TELEFONO;
+    private int telefono;
 
     @Column(name="EMAIL", nullable=true, length=50)
     @Schema(description = "")
-    private String EMAIL;
+    private String email;
 
     @Column(name="ESTADO", nullable=false, length=1)
     @Schema(description = "")
-    private char ESTADO;
+    private char estado;
 }

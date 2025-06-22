@@ -81,7 +81,7 @@ public class ProveedorController {
 
    // ENDPOINT PARA REGISTRAR UN PROVEEDOR
     @PostMapping
-    @Operation(summary = "ENDPOINT QUE REGISTRA UN PROVEEDOR", description = "ENDPOINT QUE REGISTRA UN PROVEEDOR",requestBody= @io.swagger.v3.oas.annotations.parameters.RequestBody(description="PROVEEDOR QUE SE VA A REGISTRAR", required = true), Content = @Content(schema = @Schema(implementation = proveedor.class)))
+    @Operation(summary = "ENDPOINT QUE REGISTRA UN PROVEEDOR", description = "ENDPOINT QUE REGISTRA UN PROVEEDOR",requestBody= @io.swagger.v3.oas.annotations.parameters.RequestBody(description="PROVEEDOR QUE SE VA A REGISTRAR", required = true, content = @Content(schema = @Schema(implementation = proveedor.class))))
     @ApiResponses (value = {
         @ApiResponse(responseCode = "200", description = "Se registro correctamente el proveedor", content = @Content(mediaType = "application/json", schema = @Schema(implementation = proveedor.class))),
         @ApiResponse(responseCode = "500", description = "Indica que no se logro registrar el proveedor", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "No se puede registrar el proveedor")))
@@ -103,7 +103,7 @@ public class ProveedorController {
     @PutMapping("/{ID_PROVEEDOR}") //SOLO PERMITE ACTUALIZAR ESCRIBIENDO TODOS LOS DATOS
 
     
-    @Operation(summary = "ENDPOINT QUE EDITA UN PROVEEDOR", description = "ENDPOINT QUE EDITA UN PROVEEDOR", requestBody=@io.swagger.v3.oas.annotations.parameters.RequestBody(description="PROVEEDOR QUE SE VA A REGISTRAR", required = true), Content = @Content(schema = @Schema(implementation = proveedor.class)))
+    @Operation(summary = "ENDPOINT QUE EDITA UN PROVEEDOR", description = "ENDPOINT QUE EDITA UN PROVEEDOR", requestBody=@io.swagger.v3.oas.annotations.parameters.RequestBody(description="PROVEEDOR QUE SE VA A REGISTRAR", required = true, content = @Content(schema = @Schema(implementation = proveedor.class))))
     @Parameters (value = {
         @Parameter (name="ID_PROVEEDOR", description= "ID del proveedor que se editara", in = ParameterIn.PATH, required= true)})
 
@@ -115,11 +115,11 @@ public class ProveedorController {
     public ResponseEntity<?> ActualizarProveedor(@PathVariable Long ID_PROVEEDOR, @RequestBody proveedor pActualizar){
         try {
             proveedor pActualizado = pService.BuscarUnProveedor(ID_PROVEEDOR);
-            pActualizado.setNOMBRE(pActualizar.getNOMBRE());
-            pActualizado.setCONTACTO(pActualizar.getCONTACTO());
-            pActualizado.setTELEFONO(pActualizar.getTELEFONO());
-            pActualizado.setEMAIL(pActualizar.getEMAIL());
-            pActualizado.setESTADO(pActualizar.getESTADO());
+            pActualizado.setNombre(pActualizar.getNombre());
+            pActualizado.setContacto(pActualizar.getContacto());
+            pActualizado.setTelefono(pActualizar.getTelefono());
+            pActualizado.setEmail(pActualizar.getEmail());
+            pActualizado.setEstado(pActualizar.getEstado());
             pService.GuardarProveedor(pActualizado);
             return ResponseEntity.ok(assembler.toModel(pActualizado));
         } catch (Exception e) {
