@@ -1,23 +1,24 @@
 package NSP_TECH.Service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
-
 import java.util.ArrayList;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 
 import NSP_TECH.PROVEEDORES.model.proveedor;
 import NSP_TECH.PROVEEDORES.repository.proveedorRepository;
 import NSP_TECH.PROVEEDORES.services.ProveedorServices;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 
 public class ServiceProveedorTest {
     
@@ -110,19 +111,41 @@ public class ServiceProveedorTest {
 
     }
 
+    @Test
+    public void testEditarProveedor(){
 
-/*
+        proveedor provO = new proveedor();
+        provO.setId_proveedor(11L);
+        provO.setNombre("Santiago");
+        provO.setContacto("Rancagua");
+
+        proveedor provE = new proveedor();
+        provE.setId_proveedor(11L);
+        provE.setNombre("Joel");
+        provE.setContacto("Santiago");
+
+        when(proveedorepository.save(any(proveedor.class))).thenReturn(provE);
+        when(proveedorepository.existsById(11L)).thenReturn(true);
+        proveedor resultado = proveedorservices.GuardarProveedor(provE);
+
+        assertNotNull(resultado);
+        assertEquals(11L, resultado.getId_proveedor());
+        assertEquals("Joel", resultado.getNombre());
+        assertEquals("Santiago", resultado.getContacto());
+
+        verify(proveedorepository, times(1)).save(provE);
+    }
 
     @Test
-    public void testEliminarEnvio(){
+    public void testEliminarProveedor(){
         Long id = 11L;
-        doNothing().when(enviorepository).deleteById(id);
+        doNothing().when(proveedorepository).deleteById(id);
 
-        enviosservices.Eliminar***(id);
+        proveedorservices.EliminarProveedor(11L);
 
-        verify(enviosrepository.times(1)).deleteById(id);
+        verify(proveedorepository, times(1)).deleteById(id);
 
     }
-*/
+
 }
 
